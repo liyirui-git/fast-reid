@@ -38,5 +38,7 @@ from .veri import VeRi
 from .vehicleid import VehicleID, SmallVehicleID, MediumVehicleID, LargeVehicleID
 from .veriwild import VeRiWild, SmallVeRiWild, MediumVeRiWild, LargeVeRiWild
 
+# My Bike-Person re-id datasets
+from .bikeperson import BikePerson
 
 __all__ = [k for k in globals().keys() if "builtin" not in k and not k.startswith("_")]

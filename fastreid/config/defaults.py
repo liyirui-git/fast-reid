@@ -184,9 +184,9 @@ _C.INPUT.RPT.PROB = 0.5
 # -----------------------------------------------------------------------------
 _C.DATASETS = CN()
 # List of the dataset names for training
-_C.DATASETS.NAMES = ("Market1501",)
+_C.DATASETS.NAMES = ("BikePerson",)
 # List of the dataset names for testing
-_C.DATASETS.TESTS = ("Market1501",)
+_C.DATASETS.TESTS = ("BikePerson",)
 # Combine trainset and testset joint training
 _C.DATASETS.COMBINEALL = False
 
@@ -293,7 +293,7 @@ _C.TEST.RERANK.LAMBDA = 0.3
 # Precise batchnorm
 _C.TEST.PRECISE_BN = CN()
 _C.TEST.PRECISE_BN.ENABLED = False
-_C.TEST.PRECISE_BN.DATASET = 'Market1501'
+_C.TEST.PRECISE_BN.DATASET = 'BikePerson'
 _C.TEST.PRECISE_BN.NUM_ITER = 300
 
 # ---------------------------------------------------------------------------- #
