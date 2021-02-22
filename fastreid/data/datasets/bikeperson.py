@@ -55,7 +55,7 @@ class BikePerson (ImageDataset):
         super(BikePerson, self).__init__(train, query, gallery, **kwargs)
 
     def process_dir(self, dir_path, is_train=True):
-        img_paths = glob.glob(osp.join(dir_path, '*.jpg'))
+        img_paths = glob.glob(osp.join(dir_path, '*.png'))
         pattern = re.compile(r'([-\d]+)_c(\d)')
 
         data = []
