@@ -1,0 +1,7 @@
+_BASE_: ../Base-bagtricks.yml
+
+DATASETS:
+  NAMES: ("BikePerson",)
+  TESTS: ("BikePerson",)
+
+OUTPUT_DIR: logs/bikeperson/bagtricks_R50_seg

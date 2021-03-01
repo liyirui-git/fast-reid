@@ -28,7 +28,7 @@ class BikePerson (ImageDataset):
 
     # _junk_pids 是啥不清楚 
     _junk_pids = [0, -1]
-    dataset_dir = 'BikePersonDatasetNew'
+    dataset_dir = 'BikePersonDatasetNew-700'
     dataset_url = ''
     dataset_name = 'bikeperson'
     
