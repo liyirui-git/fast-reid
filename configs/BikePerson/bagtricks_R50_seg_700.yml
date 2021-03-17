@@ -3,15 +3,15 @@ _BASE_: ../Base-bagtricks.yml
 SOLVER:
   FP16_ENABLED: True
   OPT: Adam
-  MAX_EPOCH: 240
+  MAX_EPOCH: 120
   BASE_LR: 0.00035
-  BIAS_LR_FACTOR: 4.
+  BIAS_LR_FACTOR: 2.
   WEIGHT_DECAY: 0.0005
   WEIGHT_DECAY_BIAS: 0.0005
   IMS_PER_BATCH: 64
 
   SCHED: MultiStepLR
-  STEPS: [ 80, 180 ]
+  STEPS: [ 40, 90 ]
   GAMMA: 0.1
 
   WARMUP_FACTOR: 0.1
@@ -23,4 +23,4 @@ DATASETS:
   NAMES: ("BikePerson",)
   TESTS: ("BikePerson",)
 
-OUTPUT_DIR: logs/bikeperson/bagtricks_R50_full_20210303
+OUTPUT_DIR: logs/bikeperson/bagtricks_R50_seg_700_20210312
