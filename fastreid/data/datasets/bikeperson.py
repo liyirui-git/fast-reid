@@ -16,19 +16,17 @@ from ..datasets import DATASET_REGISTRY
 @DATASET_REGISTRY.register()
 class BikePerson (ImageDataset):
     '''Bike-Person
-
     Reference:
         Yuan et al. Bike-Person Re-identification: A Benchmark and A Comprehensive Evaluation. IEEE Access 2016.
     
     URL: `<https://drive.google.com/file/d/1u6906LTa2xU4fibwfqkT6cEn81fjOFJa/view>`_
-
     Dataset statistics:
         - identities: 4579
     '''
 
     # _junk_pids 是啥不清楚 
     _junk_pids = [0, -1]
-    dataset_dir = 'BikePersonDataset-700-seg'
+    dataset_dir = 'BikePerson-700-recolor'
     dataset_url = ''
     dataset_name = 'bikeperson'
     
@@ -69,4 +67,3 @@ class BikePerson (ImageDataset):
             data.append((img_path, pid, camid))
 
         return data
-        

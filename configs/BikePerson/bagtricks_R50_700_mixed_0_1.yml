@@ -23,4 +23,4 @@ DATASETS:
   NAMES: ("BikePerson",)
   TESTS: ("BikePerson",)
 
-OUTPUT_DIR: logs/bikeperson/bagtricks_R50_seg_700_20210312
+OUTPUT_DIR: logs/bikeperson/bagtricks_R50_700_mixed_0_1_20210513

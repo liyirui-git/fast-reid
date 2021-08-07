@@ -50,6 +50,9 @@ class Visualizer:
 
     def save_rank_result(self, query_indices, output, max_rank=5, vis_label=False, label_sort='ascending',
                          actmap=False):
+        # 增加一个 n.jpg 与其第一张图片的对照表
+        num_map_file = open(os.path.join(output, "num_map.txt"), "w")
+
         if vis_label:
             fig, axes = plt.subplots(2, max_rank + 1, figsize=(3 * max_rank, 12))
         else:
@@ -63,10 +66,11 @@ class Visualizer:
             query_name = query_info['img_paths'].split('/')[-1]
             all_imgs.append(query_img)
             query_img = np.rollaxis(np.asarray(query_img.numpy(), dtype=np.uint8), 0, 3)
+            
             plt.clf()
             ax = fig.add_subplot(1, max_rank + 1, 1)
             ax.imshow(query_img)
-            ax.set_title('{:.4f}/cam{}'.format(self.all_ap[q_idx], cam_id))
+            ax.set_title('{}\n{:.4f}/cam{}'.format(query_name, self.all_ap[q_idx], cam_id))
             ax.axis("off")
             for i in range(max_rank):
                 if vis_label:
@@ -77,6 +81,7 @@ class Visualizer:
                 gallery_info = self.dataset[g_idx]
                 gallery_img = gallery_info['images']
                 cam_id = gallery_info['camids']
+                gallery_name = gallery_info['img_paths'].split('/')[-1]
                 all_imgs.append(gallery_img)
                 gallery_img = np.rollaxis(np.asarray(gallery_img, dtype=np.uint8), 0, 3)
                 if cmc[i] == 1:
@@ -90,7 +95,7 @@ class Visualizer:
                                                height=gallery_img.shape[0] - 1,
                                                edgecolor=(0, 0, 1), fill=False, linewidth=5))
                 ax.imshow(gallery_img)
-                ax.set_title(f'{self.sim[q_idx, sort_idx[i]]:.3f}/{label}/cam{cam_id}')
+                ax.set_title(f'{gallery_name}\n{self.sim[q_idx, sort_idx[i]]:.3f}/{label}/cam{cam_id}')
                 ax.axis("off")
             # if actmap:
             #     act_outputs = []
@@ -121,6 +126,7 @@ class Visualizer:
                     gallery_info = self.dataset[g_idx]
                     gallery_img = gallery_info['images']
                     cam_id = gallery_info['camids']
+                    gallery_name = gallery_info['img_paths'].split('/')[-1]
                     gallery_img = np.rollaxis(np.asarray(gallery_img, dtype=np.uint8), 0, 3)
                     ax = fig.add_subplot(2, max_rank + 1, max_rank + 3 + i)
                     ax.add_patch(plt.Rectangle(xy=(0, 0), width=gallery_img.shape[1] - 1,
@@ -128,12 +134,14 @@ class Visualizer:
                                                edgecolor=(1, 0, 0),
                                                fill=False, linewidth=5))
                     ax.imshow(gallery_img)
-                    ax.set_title(f'{self.sim[q_idx, sort_idx[j]]:.3f}/cam{cam_id}')
+                    ax.set_title(f'{gallery_name}\n{self.sim[q_idx, sort_idx[j]]:.3f}/cam{cam_id}')
                     ax.axis("off")
 
             plt.tight_layout()
             filepath = os.path.join(output, "{}.jpg".format(cnt))
             fig.savefig(filepath)
+            
+            num_map_file.write(str(cnt) + " " + query_name + " " + str(self.all_ap[q_idx]) + "\n")
 
     def vis_rank_list(self, output, vis_label, num_vis=100, rank_sort="ascending", label_sort="ascending", max_rank=5,
                       actmap=False):
